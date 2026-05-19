@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta Comercial · Equimin × All In Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#F39200;
+    --orange-bright:#FFA31A;
+    --orange-dark:#D67E00;
+    --dark:#1A1A1A;
+    --black:#0A0A0A;
+    --gray:#737373;
+    --gray-light:#A3A3A3;
+    --light-gray:#FAFAFA;
+    --border:#EAEAEA;
+    --white:#FFFFFF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',-apple-system,sans-serif;
+    color:var(--dark);
+    background:var(--white);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  /* Subtle grain texture overlay */
+  body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:1;
+    opacity:0.015;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Scroll reveal */
+  .reveal{
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  /* TOP BAR */
+  .topbar{
+    border-bottom:1px solid var(--border);
+    padding:18px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    position:sticky;
+    top:0;
+    z-index:100;
+  }
+  .logo-wrap{display:flex;align-items:center;gap:14px;}
+  .logo{
+    font-family:'Archivo Black',sans-serif;
+    font-size:22px;
+    color:var(--orange);
+    letter-spacing:-0.5px;
+    position:relative;
+  }
+  .logo::after{
+    content:'';
+    position:absolute;
+    bottom:-2px;left:0;
+    width:6px;height:6px;
+    background:var(--orange);
+    border-radius:50%;
+  }
+  .logo-sep{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--gray-light);
+    font-size:14px;
+  }
+  .logo-alt{
+    font-family:'Archivo Black',sans-serif;
+    font-size:13px;
+    color:var(--dark);
+    letter-spacing:0.5px;
+  }
+  .topbar-right{
+    display:flex;
+    align-items:center;
+    gap:24px;
+  }
+  .topbar-meta{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--gray);
+    letter-spacing:1px;
+  }
+  .topbar-meta .dot{
+    display:inline-block;
+    width:6px;height:6px;
+    background:#22C55E;
+    border-radius:50%;
+    margin-right:8px;
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1;transform:scale(1);}
+    50%{opacity:0.7;transform:scale(1.15);}
+  }
+
+  /* HERO */
+  .hero{
+    padding:120px 40px 100px;
+    max-width:1320px;
+    margin:0 auto;
+    position:relative;
+  }
+  .hero-bg-num{
+    position:absolute;
+    top:80px;
+    right:-20px;
+    font-family:'Archivo Black',sans-serif;
+    font-size:280px;
+    line-height:0.8;
+    color:var(--orange);
+    opacity:0.04;
+    pointer-events:none;
+    letter-spacing:-10px;
+  }
+  .hero-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    font-weight:500;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--dark);
+    margin-bottom:32px;
+    padding:8px 14px;
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:100px;
+  }
+  .hero-tag .indicator{
+    width:6px;height:6px;
+    background:var(--orange);
+    border-radius:50%;
+  }
+  .hero-pre{
+    font-size:20px;
+    color:var(--gray);
+    font-weight:400;
+    margin-bottom:20px;
+    max-width:780px;
+  }
+  .hero h1{
+    font-family:'Archivo Black',sans-serif;
+    font-size:128px;
+    line-height:0.88;
+    margin-bottom:32px;
+    letter-spacing:-4px;
+    color:var(--dark);
+    text-transform:uppercase;
+    position:relative;
+  }
+  .hero h1 .orange{
+    color:var(--orange);
+    position:relative;
+    display:inline-block;
+  }
+  .hero h1 .arrow{
+    display:inline-block;
+    font-size:0.6em;
+    color:var(--orange);
+    margin-left:12px;
+    transform:translateY(-0.15em);
+    font-family:'Inter',sans-serif;
+    font-weight:900;
+  }
+  .hero-sub{
+    font-size:22px;
+    max-width:680px;
+    color:var(--gray);
+    margin:40px 0 64px;
+    line-height:1.5;
+  }
+  .hero-cta-wrap{
+    display:flex;
+    align-items:center;
+    gap:24px;
+    margin-bottom:80px;
+    flex-wrap:wrap;
+  }
+  .hero-cta{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    background:var(--dark);
+    color:var(--white);
+    padding:20px 36px;
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:0.5px;
+    text-decoration:none;
+    border-radius:100px;
+    transition:all 0.3s cubic-bezier(0.16,1,0.3,1);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-cta::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:var(--orange);
+    transform:translateY(100%);
+    transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    z-index:0;
+  }
+  .hero-cta:hover::before{transform:translateY(0);}
+  .hero-cta span{position:relative;z-index:1;}
+  .hero-cta .arrow-icon{
+    position:relative;
+    z-index:1;
+    transition:transform 0.3s;
+  }
+  .hero-cta:hover .arrow-icon{transform:translateX(4px);}
+  .hero-scroll{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--gray);
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .hero-scroll .line{
+    width:32px;height:1px;
+    background:var(--gray);
+  }
+  .hero-meta{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:32px;
+    max-width:920px;
+    border-top:1px solid var(--border);
+    padding-top:36px;
+    position:relative;
+  }
+  .hero-meta::before{
+    content:'';
+    position:absolute;
+    top:-1px;left:0;
+    width:80px;height:2px;
+    background:var(--orange);
+  }
+  .hero-meta strong{
+    display:block;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--gray-light);
+    margin-bottom:10px;
+    font-weight:500;
+  }
+  .hero-meta div p{font-size:17px;font-weight:600;color:var(--dark);}
+
+  /* SECTIONS */
+  section{padding:100px 40px;position:relative;}
+  .container{max-width:1320px;margin:0 auto;}
+  .section-head{
+    margin-bottom:80px;
+    max-width:1080px;
+  }
+  .section-head-top{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:32px;
+  }
+  .section-head-top .dot{
+    width:8px;
+    height:8px;
+    background:var(--orange);
+    border-radius:50%;
+  }
+  .section-head-top .label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:1.5px;
+    color:var(--dark);
+    text-transform:uppercase;
+    font-weight:500;
+  }
+  .section-head-top .sublabel{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--gray);
+    letter-spacing:0.3px;
+  }
+  .section-num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:2px;
+    color:var(--orange);
+    margin-bottom:12px;
+    text-transform:uppercase;
+    font-weight:500;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .section-num::before{
+    content:'';
+    width:24px;height:1px;
+    background:var(--orange);
+  }
+  .section-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:var(--gray);
+    letter-spacing:0.5px;
+  }
+  h2{
+    font-family:'Archivo Black',sans-serif;
+    font-size:72px;
+    line-height:0.92;
+    margin-bottom:24px;
+    letter-spacing:-2.5px;
+    color:var(--dark);
+    text-transform:uppercase;
+  }
+  h2 .orange{color:var(--orange);}
+  .lead{
+    font-size:20px;
+    color:var(--gray);
+    max-width:680px;
+    line-height:1.5;
+  }
+
+  /* CONTEXTO */
+  .contexto-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:0;
+    border-top:1px solid var(--border);
+  }
+  .ctx-card{
+    padding:48px 32px 48px 0;
+    border-right:1px solid var(--border);
+    position:relative;
+    transition:background 0.3s;
+  }
+  .ctx-card:last-child{border-right:none;padding-right:0;}
+  .ctx-card:not(:first-child){padding-left:32px;}
+  .ctx-card::before{
+    content:'';
+    position:absolute;
+    top:-1px;left:0;
+    width:0;height:2px;
+    background:var(--orange);
+    transition:width 0.5s cubic-bezier(0.16,1,0.3,1);
+  }
+  .ctx-card:hover::before{width:100%;}
+  .ctx-num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:var(--orange);
+    margin-bottom:32px;
+    letter-spacing:1px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .ctx-num::after{
+    content:'';
+    flex:1;
+    height:1px;
+    background:var(--border);
+  }
+  .ctx-card h3{
+    font-family:'Archivo Black',sans-serif;
+    font-size:26px;
+    line-height:1.05;
+    margin-bottom:20px;
+    color:var(--dark);
+    text-transform:uppercase;
+    letter-spacing:-0.5px;
+  }
+  .ctx-card p{color:var(--gray);font-size:15px;line-height:1.65;}
+
+  /* SERVICIOS */
+  .servicios{background:var(--light-gray);position:relative;}
+  .servicios::before{
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;
+    height:1px;
+    background:var(--border);
+  }
+  .servicio{
+    background:var(--white);
+    margin-bottom:24px;
+    padding:0;
+    border:1px solid var(--border);
+    border-radius:20px;
+    overflow:hidden;
+    transition:transform 0.4s cubic-bezier(0.16,1,0.3,1),box-shadow 0.4s;
+    position:relative;
+  }
+  .servicio:hover{
+    transform:translateY(-4px);
+    box-shadow:0 24px 48px -12px rgba(0,0,0,0.08);
+  }
+  .servicio-inner{padding:56px;}
+  .servicio-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:32px;
+    margin-bottom:40px;
+    padding-bottom:40px;
+    border-bottom:1px solid var(--border);
+    position:relative;
+  }
+  .servicio-top::after{
+    content:'';
+    position:absolute;
+    bottom:-1px;left:0;
+    width:80px;height:2px;
+    background:var(--orange);
+  }
+  .servicio-label{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:1.5px;
+    color:var(--orange);
+    margin-bottom:20px;
+    text-transform:uppercase;
+    font-weight:500;
+  }
+  .servicio-label::before{
+    content:'';
+    width:6px;height:6px;
+    background:var(--orange);
+    border-radius:50%;
+  }
+  .servicio-top h3{
+    font-family:'Archivo Black',sans-serif;
+    font-size:48px;
+    line-height:0.95;
+    letter-spacing:-1.5px;
+    color:var(--dark);
+    text-transform:uppercase;
+  }
+  .servicio-price{text-align:right;}
+  .servicio-price .label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--gray);
+    margin-bottom:10px;
+    font-weight:500;
+  }
+  .servicio-price .monto{
+    font-family:'Archivo Black',sans-serif;
+    font-size:36px;
+    color:var(--dark);
+    letter-spacing:-1px;
+    line-height:1;
+  }
+  .servicio-price .monto .accent{color:var(--orange);}
+  .servicio-desc{
+    font-size:17px;
+    color:var(--gray);
+    margin-bottom:40px;
+    max-width:760px;
+    line-height:1.6;
+  }
+  .incluye-titulo{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    font-weight:500;
+    color:var(--gray);
+    margin-bottom:24px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .incluye-titulo::after{
+    content:'';
+    flex:1;
+    height:1px;
+    background:var(--border);
+  }
+  .incluye{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px 32px;
+  }
+  .incluye-item{
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+    font-size:15px;
+    color:var(--dark);
+    line-height:1.55;
+  }
+  .check{
+    flex-shrink:0;
+    width:22px;height:22px;
+    background:var(--orange);
+    color:var(--white);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-size:11px;
+    margin-top:2px;
+    border-radius:50%;
+  }
+
+  /* INVERSIÓN */
+  .inv-tabla{
+    border:1px solid var(--border);
+    border-radius:20px;
+    overflow:hidden;
+    background:var(--white);
+  }
+  .inv-row{
+    display:grid;
+    grid-template-columns:2.5fr 1.5fr 1fr;
+    padding:32px 40px;
+    border-bottom:1px solid var(--border);
+    align-items:center;
+    gap:32px;
+    transition:background 0.2s;
+    position:relative;
+  }
+  .inv-row:last-child{border-bottom:none;}
+  .inv-row:not(.header):hover{background:var(--light-gray);}
+  .inv-row.header{
+    background:var(--dark);
+    color:var(--white);
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    font-weight:500;
+    padding:20px 40px;
+  }
+  .inv-row .nombre{
+    font-family:'Archivo Black',sans-serif;
+    font-size:18px;
+    line-height:1.1;
+    color:var(--dark);
+    text-transform:uppercase;
+    letter-spacing:-0.3px;
+  }
+  .inv-row .desc{
+    font-size:13px;
+    color:var(--gray);
+    margin-top:8px;
+    font-family:'Inter',sans-serif;
+    font-weight:400;
+    text-transform:none;
+    line-height:1.5;
+  }
+  .inv-row .modalidad{
+    font-size:14px;
+    color:var(--gray);
+    font-family:'JetBrains Mono',monospace;
+    letter-spacing:0.3px;
+  }
+  .inv-row .precio{
+    font-family:'Archivo Black',sans-serif;
+    font-size:24px;
+    text-align:right;
+    color:var(--orange);
+    letter-spacing:-0.5px;
+  }
+  .inv-nota{
+    margin-top:32px;
+    padding:28px 32px;
+    background:var(--white);
+    border:1px solid var(--border);
+    border-left:3px solid var(--orange);
+    border-radius:12px;
+    font-size:14px;
+    color:var(--gray);
+    line-height:1.7;
+  }
+  .inv-nota strong{
+    color:var(--dark);
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    display:inline-block;
+    margin-right:8px;
+  }
+
+  /* FOOTER INSTITUCIONAL */
+  footer{
+    background:var(--black);
+    color:var(--white);
+    padding:80px 40px 64px;
+    position:relative;
+    overflow:hidden;
+  }
+  footer::before{
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,var(--orange),transparent);
+  }
+  footer::after{
+    content:'EQUIMIN';
+    position:absolute;
+    bottom:-60px;
+    right:-20px;
+    font-family:'Archivo Black',sans-serif;
+    font-size:240px;
+    line-height:1;
+    color:rgba(255,255,255,0.02);
+    letter-spacing:-8px;
+    pointer-events:none;
+  }
+  .footer-grid{
+    max-width:1320px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+    align-items:start;
+    position:relative;
+    z-index:2;
+  }
+  .footer-logo{
+    font-family:'Archivo Black',sans-serif;
+    font-size:22px;
+    color:var(--white);
+    margin-bottom:20px;
+    letter-spacing:-0.5px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .footer-logo .dot{
+    width:8px;height:8px;
+    background:var(--orange);
+    border-radius:50%;
+  }
+  .footer-info{
+    font-size:14px;
+    color:rgba(255,255,255,0.55);
+    line-height:1.9;
+    font-family:'JetBrains Mono',monospace;
+    letter-spacing:0.2px;
+  }
+  .footer-meta{text-align:right;}
+  .footer-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    color:rgba(255,255,255,0.4);
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    margin-bottom:12px;
+    font-weight:500;
+  }
+  .footer-client{
+    font-family:'Archivo Black',sans-serif;
+    font-size:22px;
+    color:var(--orange);
+    margin-bottom:8px;
+    letter-spacing:-0.5px;
+  }
+  .footer-date{
+    font-size:13px;
+    color:rgba(255,255,255,0.55);
+    font-family:'JetBrains Mono',monospace;
+    letter-spacing:0.3px;
+  }
+  .footer-bottom{
+    max-width:1320px;
+    margin:64px auto 0;
+    padding-top:32px;
+    border-top:1px solid rgba(255,255,255,0.08);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:16px;
+    position:relative;
+    z-index:2;
+  }
+  .footer-bottom-text{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:rgba(255,255,255,0.3);
+    letter-spacing:1px;
+  }
+
+  /* RESPONSIVE */
+  @media(max-width:900px){
+    .hero h1{font-size:80px;letter-spacing:-2px;}
+    .hero-bg-num{font-size:180px;}
+    .hero-meta{grid-template-columns:repeat(2,1fr);gap:24px;}
+    h2{font-size:52px;}
+    .contexto-grid{grid-template-columns:1fr;border-top:none;}
+    .ctx-card{
+      border-right:none;
+      border-top:1px solid var(--border);
+      padding:40px 0!important;
+    }
+    .section-head{margin-bottom:48px;}
+    .section-head-top{flex-wrap:wrap;gap:8px 14px;}
+    .section-head-top .sublabel{flex-basis:100%;margin-top:-4px;}
+  }
+  @media(max-width:768px){
+    .topbar{padding:14px 20px;}
+    .topbar-meta{display:none;}
+    .hero{padding:60px 20px 80px;}
+    .hero h1{font-size:56px;letter-spacing:-1.5px;}
+    .hero-bg-num{display:none;}
+    .hero-pre{font-size:17px;}
+    .hero-sub{font-size:18px;}
+    .hero-meta{grid-template-columns:1fr;gap:24px;}
+    section{padding:80px 20px;}
+    h2{font-size:38px;letter-spacing:-1px;}
+    .servicio-inner{padding:32px 24px;}
+    .servicio-top h3{font-size:32px;}
+    .servicio-price{text-align:left;}
+    .servicio-price .monto{font-size:28px;}
+    .incluye{grid-template-columns:1fr;}
+    .inv-row{grid-template-columns:1fr;gap:12px;padding:24px;}
+    .inv-row .precio{text-align:left;}
+    .inv-row.header{display:none;}
+    .footer-grid{grid-template-columns:1fr;gap:40px;}
+    .footer-meta{text-align:left;}
+    .footer-bottom{flex-direction:column;align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="logo-wrap">
+    <span class="logo">EQUIMIN</span>
+    <span class="logo-sep">×</span>
+    <span class="logo-alt">ALL IN AGENCY</span>
+  </div>
+  <div class="topbar-right">
+    <span class="topbar-meta"><span class="dot"></span>PROPUESTA · 2026</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-num">26</div>
+  <span class="hero-tag reveal"><span class="indicator"></span>Propuesta Comercial · Mayo 2026</span>
+  <p class="hero-pre reveal">Propuesta para Equimin, soluciones en</p>
+  <h1 class="reveal">Más <span class="orange">Arriendos<span class="arrow">↗</span></span><br>Menos esfuerzo.</h1>
+  <p class="hero-sub reveal">Una estrategia de captación digital y prospección B2B diseñada para que Equimin llene su pipeline con empresas mineras y constructoras listas para arrendar maquinaria pesada.</p>
+  <div class="hero-cta-wrap reveal">
+    <a href="#servicios" class="hero-cta">
+      <span>Ver propuesta</span>
+      <span class="arrow-icon">→</span>
+    </a>
+    <div class="hero-scroll">
+      <span class="line"></span>
+      <span>Scroll</span>
+    </div>
+  </div>
+  <div class="hero-meta reveal">
+    <div><strong>Cliente</strong><p>Equimin Ltda.</p></div>
+    <div><strong>Dirigida a</strong><p>Jorge Bascuñán</p></div>
+    <div><strong>Preparado por</strong><p>Julián Martínez</p></div>
+    <div><strong>Vigencia</strong><p>30 días</p></div>
+  </div>
+</section>
+
+<!-- DIAGNÓSTICO -->
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-head-top">
+        <span class="dot"></span>
+        <span class="label">01 — Diagnóstico</span>
+        <span class="sublabel">· El contexto del mercado</span>
+      </div>
+      <h2>El desafío del arriendo<br>de <span class="orange">maquinaria pesada.</span></h2>
+      <p class="lead">El mercado B2B en minería y construcción no se gana con presencia: se gana con velocidad de respuesta, visibilidad en el momento exacto de búsqueda y un canal de prospección que no dependa del azar.</p>
+    </div>
+
+    <div class="contexto-grid reveal">
+      <div class="ctx-card">
+        <div class="ctx-num">01 / 03</div>
+        <h3>Búsqueda activa</h3>
+        <p>Los jefes de proyecto buscan equipos específicos cuando los necesitan. Si no apareces en Google en ese momento, la cotización se la lleva otro.</p>
+      </div>
+      <div class="ctx-card">
+        <div class="ctx-num">02 / 03</div>
+        <h3>Decisión rápida y técnica</h3>
+        <p>El comprador B2B no se demora: compara fichas técnicas, precios y disponibilidad en minutos. Gana quien presenta mejor su información, no quien tiene más historia.</p>
+      </div>
+      <div class="ctx-card">
+        <div class="ctx-num">03 / 03</div>
+        <h3>Pipeline frío</h3>
+        <p>Esperar a que el cliente llegue es lento. Una capa de prospección activa abre conversaciones con empresas que aún no te conocen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="servicios" id="servicios">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-head-top">
+        <span class="dot"></span>
+        <span class="label">02 — Servicios</span>
+        <span class="sublabel">· Lo que proponemos</span>
+      </div>
+      <h2>Dos motores trabajando<br>en <span class="orange">paralelo.</span></h2>
+      <p class="lead">Inbound y outbound combinados. Mientras Google Ads captura demanda existente, el equipo SDR genera demanda nueva.</p>
+    </div>
+
+    <div class="servicio reveal">
+      <div class="servicio-inner">
+        <div class="servicio-top">
+          <div>
+            <span class="servicio-label">01 · Inbound</span>
+            <h3>Gestión de<br>Google Ads</h3>
+          </div>
+          <div class="servicio-price">
+            <div class="label">Fee Mensual</div>
+            <div class="monto"><span class="accent">25 UF</span> + IVA</div>
+          </div>
+        </div>
+        <p class="servicio-desc">Administración integral de campañas en Google Ads para capturar la demanda activa de empresas que están buscando arrendar maquinaria pesada en este momento. El monto a invertir en medios lo define Equimin y se gestiona de forma transparente.</p>
+
+        <div class="incluye-titulo">Qué incluye</div>
+        <div class="incluye">
+          <div class="incluye-item"><span class="check">✓</span><div>Auditoría inicial y diseño de estrategia: campañas de búsqueda, anuncios en la red de Google y remarketing a visitantes previos</div></div>
+          <div class="incluye-item"><span class="check">✓</span><div>Acceso directo a Next Like, nuestra plataforma de métricas para monitorear el rendimiento de las campañas en tiempo real</div></div>
+          <div class="incluye-item"><span class="check">✓</span><div>Creación y optimización continua de anuncios y landings</div></div>
+          <div class="incluye-item"><span class="check">✓</span><div>Reporte mensual con métricas clave y recomendaciones</div></div>
+          <div class="incluye-item"><span class="check">✓</span><div>Reunión mensual de revisión y ajuste de estrategia</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="servicio reveal">
+      <div class="servicio-inner">
+        <div class="servicio-top">
+          <div>
+            <span class="servicio-label">02 · Outbound</span>
+            <h3>Prospección B2B<br>(Equipo SDR)</h3>
+          </div>
+          <div class="servicio-price">
+            <div class="label">100% Variable</div>
+            <div class="monto"><span class="accent">$90.000</span> / reunión</div>
+          </div>
+        </div>
+        <p class="servicio-desc">Definimos junto a Equimin su cliente ideal (ICP) y nuestro equipo SDR prospecta activamente a esas empresas, identifica al tomador de decisión y agenda reuniones calificadas directamente en la agenda de Equimin. No hay fee base: solo pagas por cada reunión presentada.</p>
+
+        <div class="incluye-titulo">Qué incluye</div>
+        <div class="incluye">
+          <div class="incluye-item"><span class="check">✓</span><div>Definición conjunta del cliente ideal (ICP) y construcción de base de datos de empresas objetivo</div></div>
+          <div class="incluye-item"><span class="check">✓</span><div>Reporte de actividad y resultados a través de Next Meeting, nuestro software propio de gestión SDR</div></div>
+          <div class="incluye-item"><span class="check">✓</span><div>Identificación de decisores: jefes de proyecto, gerentes de operaciones, compras</div></div>
+          <div class="incluye-item"><span class="check">✓</span><div>Prospección multicanal: LinkedIn, email y llamadas</div></div>
+          <div class="incluye-item"><span class="check">✓</span><div>Calificación previa antes de agendar</div></div>
+          <div class="incluye-item"><span class="check">✓</span><div>Agenda directa en calendario de Equimin</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVERSIÓN -->
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-head-top">
+        <span class="dot"></span>
+        <span class="label">03 — Inversión</span>
+        <span class="sublabel">· Estructura comercial</span>
+      </div>
+      <h2>Estructura <span class="orange">comercial.</span></h2>
+      <p class="lead">Un modelo transparente: fees claros, costos variables solo cuando hay resultados, y total visibilidad sobre la inversión en medios.</p>
+    </div>
+
+    <div class="inv-tabla reveal">
+      <div class="inv-row header">
+        <div>Servicio</div>
+        <div>Modalidad</div>
+        <div style="text-align:right;">Valor</div>
+      </div>
+      <div class="inv-row">
+        <div>
+          <div class="nombre">Gestión Google Ads</div>
+          <div class="desc">Administración mensual de campañas</div>
+        </div>
+        <div class="modalidad">Fee fijo mensual</div>
+        <div class="precio">25 UF + IVA</div>
+      </div>
+      <div class="inv-row">
+        <div>
+          <div class="nombre">Inversión en Medios</div>
+          <div class="desc">Monto propuesto y gestionado por All In · facturado al contado el día 1 de cada mes</div>
+        </div>
+        <div class="modalidad">Propuesta y ejecución</div>
+        <div class="precio">Variable</div>
+      </div>
+      <div class="inv-row">
+        <div>
+          <div class="nombre">Prospección SDR</div>
+          <div class="desc">Solo pagas reuniones agendadas y calificadas · sin fee base</div>
+        </div>
+        <div class="modalidad">100% variable por resultado</div>
+        <div class="precio">$90.000 c/u</div>
+      </div>
+    </div>
+
+    <div class="inv-nota reveal">
+      <strong>Notas</strong>Valores en UF se calculan según el valor de la UF del día 1 de cada mes. La inversión publicitaria es propuesta y gestionada por All In Agency, y se factura al contado el día 1 de cada mes a Equimin. Las reuniones del servicio SDR se facturan en pesos chilenos al cierre de cada mes.
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">All In Agency SPA<span class="dot"></span></div>
+      <p class="footer-info">RUT 77.686.615-6 · julianmartinez@allinagency.io</p>
+      <p class="footer-info">Providencia, Santiago — Chile</p>
+    </div>
+    <div class="footer-meta">
+      <p class="footer-label">Propuesta preparada para</p>
+      <p class="footer-client">Equimin Ltda.</p>
+      <p class="footer-date">Mayo 2026</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-bottom-text">© 2026 All In Agency SPA</span>
+    <span class="footer-bottom-text">Documento confidencial</span>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
